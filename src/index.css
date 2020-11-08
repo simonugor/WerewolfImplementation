@@ -1,13 +1,359 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: myFont;
+  src: url(./fonts/MyMedieval.ttf);
 }
+
+/* Main div */
+.main_div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: myFont;
+  transition: background 0.8s ease;
+}
+
+.header_div {
+  border-bottom: 3px solid black;
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+  font-size: 4vh;
+}
+
+button {
+  font-family: myFont;
+}
+
+/* Left div - players and roles */
+.div_left {
+  width: 23vw;
+  height: 95vh;
+  background-color: transparent;
+  float: left;
+  display: flex;
+  justify-content: center;
+  border-right: 3px solid black;
+}
+
+.players_div {
+  margin-top: 2vh;
+  text-align: center;
+}
+
+.player_name {
+  text-align: center;
+  cursor: pointer;
+}
+
+.player_name_role {
+  margin-bottom: 2vh;
+}
+
+.players_heading {
+  margin-bottom: 2vh;
+  text-align: center;
+}
+
+.button_roles {
+  width: 8vw;
+  height: 6vh;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 2vh;
+}
+
+.button_roles:active {
+  background-color: gray;
+}
+
+/* Right div */
+.div_right {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Top Right div */
+
+.div_top_right {
+  background-color: transparent;
+  height: 50vh;
+  
+}
+
+.smaller_buttons_div {
+  width: 15vw;
+  height: 49vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+.bigger_buttons_div {
+  width: 33vw;
+  height: 49vh;
+  float: left;
+  text-align: center;
+}
+
+.image_div {
+  height: 49vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.round_button {
+  width: 24vw;
+  height: 30vh;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-position: center;
+}
+
+.button {
+  width: 9vw;
+  height: 9vh;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 2vh;
+}
+
+.button:active {
+  background-color: gray;
+}
+
+.bigger_button {
+  width: 18vw;
+  height:20vh;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-right: 2vw;
+  margin-top: 7vh;
+}
+
+.bigger_button:active {
+  background-color: gray;
+}
+
+.bigger_button_narrow {
+  width: 9vw;
+  height:20vh;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.bigger_button_narrow:active {
+  background-color: gray;
+}
+
+.button_bottom {
+  width: 9vw;
+  height: 9vh;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 2vh;
+  margin-top: 7vh;
+}
+
+.button_bottom:active {
+  background-color: gray;
+}
+
+/* Bottom Right div */
+
+.div_bottom_right {
+  background-color: transparent;
+  height: 45vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 3px solid black;
+}
+
+.story_div {
+  text-align: center;
+}
+
+.story_text {
+  font-size: 6vh;
+  font-weight: bold;
+}
+
+.secondary_text {
+  font-size: 4vh;
+  margin-top: 3vh;
+}
+
+/* PopUp div */
+
+.popup_div {
+  position: absolute;
+  margin: auto;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  position: relative;
+  border: 3px solid black;
+  width: 30vw;
+  height: 30vh;
+  background-color: white;
+  text-align: center;
+}
+
+.form_label {
+  font-weight: bold;
+  font-size: 3vh;
+}
+
+.input_box {
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+  outline: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 15vw;
+  height: 3vh;
+}
+
+.select_box {
+  outline: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 15vw;
+  height: 3.5vh;
+}
+
+.popup_button {
+  width: 7vw;
+  height: 5vh;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 1vh;
+  margin-top: 3vh;
+}
+
+.popup_button:active {
+  background-color: gray;
+}
+
+/* Witch PopUp */
+
+.witch_popup_div {
+  position: absolute;
+  margin: auto;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.witch_popup {
+  position: relative;
+  border: 3px solid black;
+  width: 30vw;
+  height: 30vh;
+  background-color: white;
+  text-align: center;
+}
+
+.witch_popup_button {
+  width: 7vw;
+  height: 7vh;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 1vh;
+  margin-top: 3vh;
+}
+
+.witch_popup_heading{
+  margin-top: 3vh;
+}
+
+/* Witch Heal PopUp */
+
+.witch_heal_div {
+  position: absolute;
+  margin: auto;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.witch_heal {
+  position: relative;
+  border: 3px solid black;
+  width: 30vw;
+  height: 30vh;
+  background-color: white;
+  text-align: center;
+}
+
+.heal_header {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+/* OK PopUp */
+
+.okpopup_div {
+  position: absolute;
+  margin: auto;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.okpopup {
+  position: relative;
+  border: 3px solid black;
+  width: 30vw;
+  height: 30vh;
+  background-color: white;
+  text-align: center;
+}
+
+.okpopup_text {
+  margin-top: 5vh;
+}
+
