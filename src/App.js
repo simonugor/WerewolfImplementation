@@ -32,6 +32,7 @@ function App() {
   const [nightCount, setNightCount] = useState(1) //add 1 to this every night
   const [witch, setWitch] = useState({heal: "1", kill: "1"})
   const [killedThisNight, setKilledThisNight] = useState([]) //reset this every night
+  const [loverKilled, setLoverKilled] = useState(false)
   //story
   const [storyText, setStoryText] = useState("Preparation phase")
   const [secondaryText, setSecondaryText] = useState("Please add players and select their roles.")
@@ -86,12 +87,29 @@ function App() {
     setOkText("Hello World")
   }
 
+  //function to launch the next night
   function nextNight() {
-    setStoryText("Night " + nightCount + " begins")
-    setSecondaryText("Click next to continue")
-    setBg("#5c4b43")
-    setDayNightImg(`url(${Night})`)
-    setNextFunc("Seer")
+    //checking if there are any werewolves still alive etc.
+    var werewolvesAlive = 0
+    players.map(player => {
+      if (player.role === "Werewolf" && player.alive === true) {
+        werewolvesAlive += 1
+      } else if (player.role === "White Werewolf" && player.alive === true) {
+        werewolvesAlive += 1
+      }
+      return player
+    })
+
+    if (werewolvesAlive === 0) {
+      setStoryText("Villagers won!")
+      setSecondaryText("There is no Werewolf alive")
+    } else if (werewolvesAlive !== 0) {
+      setStoryText("Night " + nightCount + " begins")
+      setSecondaryText("Click next to continue")
+      setBg("#5c4b43")
+      setDayNightImg(`url(${Night})`)
+      setNextFunc("Seer")
+    }
   }
 
   function showPotionsPopup(event) {
@@ -156,9 +174,14 @@ function App() {
 
   function addPlayer(event) {
     event.preventDefault()
-    setPlayers([...players, {name: input, role: role, style: "black", lover: false, alive: true, crossed: "none", mayor: false}])
-    setInput("")
-    //setPopUpVisible("none")
+    if (input !== "" && input !== " " && input !== "  ") {
+      setPlayers([...players, {name: input, role: role, style: "black", lover: false, alive: true, crossed: "none", mayor: false}])
+      setInput("")
+    } else {
+      setInput("")
+      alert("Players name can't be empty")
+    }
+    
   }
 
   function cancelPopUp(event) {
@@ -521,14 +544,22 @@ function App() {
   function werewolvesKill(event) {
     var selected = event.target.innerHTML
     players.map(player => {
-      if (player.name === selected && player.alive === true) {
+      if (player.name === selected && player.alive === true && player.lover === true) {
+        setLoverKilled(true)
         setStoryText(player.name + " was killed")
         setSecondaryText("Click next to continue")
         player.alive = false
         player.crossed = "line-through"
         setKilledThisNight([...killedThisNight, player.name])
         setNextFunc("whitewerewolf")
-        //add checking if player is a lover or hunter
+      } else if (player.name === selected && player.alive === true && player.lover === false) {
+        setLoverKilled(false)
+        setStoryText(player.name + " was killed")
+        setSecondaryText("Click next to continue")
+        player.alive = false
+        player.crossed = "line-through"
+        setKilledThisNight([...killedThisNight, player.name])
+        setNextFunc("whitewerewolf")
       } else if (player.name === selected && player.alive === false) {
         alert("This player is already dead!")
       }
@@ -668,16 +699,45 @@ function App() {
     //end of night
   }
 
+  //beginning of the day
   function day() {
-    //restart every state needed to be restarted or added to
-    setBg("#5387bb")
-    setDayNightImg(`url(${Day})`)
-    setKilledThisNight([])
-    setSleepwalking([])
-    setNightCount(nightCount+1) //does this work? - yes it does :)
-    setStoryText("Night is over. Day starts.")
-    setSecondaryText("Click next to continue")
-    setNextFunc("dayStarts")
+    //checking if any villagers are still alive etc.
+    var villagersAlive = 0
+    players.map(player => {
+      if (player.role === "Villager" && player.alive === true) {
+        villagersAlive += 1
+      }
+      return player
+    })
+
+    if (villagersAlive === 0) {
+      setStoryText("Werewolves won!")
+      setSecondaryText("There is no villager alive")
+    } else if (villagersAlive !== 0 && loverKilled === false) {
+      //restart every state needed to be restarted or added to
+      setBg("#5387bb")
+      setDayNightImg(`url(${Day})`)
+      setKilledThisNight([])
+      setSleepwalking([])
+      setNightCount(nightCount+1) //does this work? - yes it does :)
+      setStoryText("Night is over. Day starts.")
+      setSecondaryText("Click next to continue")
+      setNextFunc("dayStarts")
+    } else if (villagersAlive !== 0 && loverKilled === true) {
+      setStoryText("Lover was killed - second lover dies too")
+      setSecondaryText("Click next to continue")
+      setBg("#5387bb")
+      setDayNightImg(`url(${Day})`)
+      players.map(player => {
+        if (player.lover === true) {
+          player.alive = false
+          player.crossed = "line-through"
+          setLoverKilled(false)
+          setNextFunc("day")
+        }
+        return player
+      })
+    }
   }
 
   function dayStarts() {
