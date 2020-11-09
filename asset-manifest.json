@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/WerewolfImplementation/static/css/main.2ffba543.chunk.css",
+    "main.js": "/WerewolfImplementation/static/js/main.755edd49.chunk.js",
+    "main.js.map": "/WerewolfImplementation/static/js/main.755edd49.chunk.js.map",
+    "runtime-main.js": "/WerewolfImplementation/static/js/runtime-main.cfa0d546.js",
+    "runtime-main.js.map": "/WerewolfImplementation/static/js/runtime-main.cfa0d546.js.map",
+    "static/js/2.9ec57d40.chunk.js": "/WerewolfImplementation/static/js/2.9ec57d40.chunk.js",
+    "static/js/2.9ec57d40.chunk.js.map": "/WerewolfImplementation/static/js/2.9ec57d40.chunk.js.map",
+    "static/js/3.55e8afe2.chunk.js": "/WerewolfImplementation/static/js/3.55e8afe2.chunk.js",
+    "static/js/3.55e8afe2.chunk.js.map": "/WerewolfImplementation/static/js/3.55e8afe2.chunk.js.map",
+    "index.html": "/WerewolfImplementation/index.html",
+    "static/css/main.2ffba543.chunk.css.map": "/WerewolfImplementation/static/css/main.2ffba543.chunk.css.map",
+    "static/js/2.9ec57d40.chunk.js.LICENSE.txt": "/WerewolfImplementation/static/js/2.9ec57d40.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/WerewolfImplementation/static/media/MyMedieval.5feea338.ttf",
+    "static/media/day.c76b723b.png": "/WerewolfImplementation/static/media/day.c76b723b.png",
+    "static/media/night2.d7d85560.png": "/WerewolfImplementation/static/media/night2.d7d85560.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cfa0d546.js",
+    "static/js/2.9ec57d40.chunk.js",
+    "static/css/main.2ffba543.chunk.css",
+    "static/js/main.755edd49.chunk.js"
+  ]
+}
